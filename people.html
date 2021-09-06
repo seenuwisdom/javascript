@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+   <script>
+      const names = [];
+      const phones = [];
+      const emails = [];
+      
+      
+      function Add_A_Person_To_Table() {
+      
+      var name = document.getElementById("name").value;
+      var phone = document.getElementById("phone").value;
+      var email = document.getElementById("email").value;
+      
+      var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      var phoneRegex = /^(\+\d)*[\d\s\-\(\)]*[0-9]$/;
+      
+      if(!phone.match(phoneRegex)) {
+          alert("Invalid phone number !! Please enter a valid phone number to get added to the list !!");
+          return;
+      }
+      if(!email.match(emailRegex)) {
+          alert("Invalid email address !! Please enter a valid email address to get added to the list !!");
+          return;
+      } 
+      
+      names.push(name);
+      phones.push(phone);
+      emails.push(email);
+      document.getElementById("name").value = "";
+      document.getElementById("phone").value = "";
+      document.getElementById("email").value = "";
+      displayArraysInTables(names[names.length-1],phones[phones.length-1],emails[emails.length-1]);
+      }
+      
+      function displayArraysInTables(name, phone, email) {
+      var table = document.getElementById("peopleTable");
+      var row = table.insertRow(-1);
+      var nameCell = row.insertCell(0);
+      var phoneCell = row.insertCell(1);
+      var emailCell = row.insertCell(2);
+      nameCell.innerHTML= name;
+      phoneCell.innerHTML = phone;
+      emailCell.innerHTML = email;
+      }
+      
+   </script>
+   <body>
+      <center>
+         <h1>People Data Collector</h1>
+      </center>
+      <h2>Current List of People</h2>
+      <table id="peopleTable" border="1">
+         <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email Adderss</th>
+         </tr>
+      </table>
+      <p>Hello !! Please Enter your details and click on add to get added to the list !!</p>
+      <table>
+      <tr>
+         <td>Name</td>
+         <td><input type="text" id="name"/></td>
+      </tr>
+      <tr>
+         <td>Phone Number</td>
+         <td><input type="text" id="phone"/></td>
+      </tr>
+      <tr>
+         <td>Email Address</td>
+         <td><input type="text" id="email"/></td>
+      </tr>
+      <tr>
+         <td><button type="button" onclick='Add_A_Person_To_Table()'>Add</button></td>
+      </tr>
+      <table>
+   </body>
+</html>
